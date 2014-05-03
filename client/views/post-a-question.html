@@ -1,0 +1,27 @@
+<template name="postQuestion">
+	<div id="login">
+	  {{> loginButtons}}
+	</div>
+	<div id="overlay">&laquo; Please sign in to post a question.</div>
+	<div class="intro active">
+		<h1>Post A Question</h1>
+		<p>Please:
+			<ul>
+				<li>No partisan leaning questions.</li>
+				<li>Ask questions that yeild clear answers.</li>				
+				<li>Refrain from questions whose answers are opinion-based.</li>
+			</ul>
+		</p>
+		<div class="form">
+			<label for="questionT">Question Title:</label>
+			<textarea type="text" class="qTitle" id="questionT" name="questionT" ></textarea>
+			<br><br>
+			<label for="fullQ">Question Content:</label>
+			<textarea class="qBody" id="fullQ" name="fullQ" rows="10"></textarea>
+			<br>
+			<button type="submit" class="post"><span>P</span>ost</button>
+		</div>
+
+	</div>
+
+</template>

@@ -1,0 +1,38 @@
+<head>
+  <title>ClearGov</title>
+</head>
+
+<body>
+
+</body>
+
+<template name="home">
+    {{> hello}}
+    {{> bulletin}}
+</template>
+
+<template name="hello">
+  <div id="login">
+    {{> loginButtons}}
+  </div>
+  <div id="titleContainer">
+    <h1>Welcome to <a href="{{pathFor '/'}}">ClearGov</a></h1>
+    <a id="postQ" href="{{pathFor 'post-a-question'}}">Post Your Question</a> 
+  </div>
+  <div class="greeting">{{greeting}}</div>
+</template>
+
+<template name="bulletin">
+  <div class="questions">
+    {{#each questions}}
+        {{> question}}
+      {{/each}}
+  </div>
+</template>
+
+<template name="question">
+  <div class="question">
+    <h2>{{title}}</h2>
+    <p>{{fullQuestion}}</p>
+  </div>
+</template>
