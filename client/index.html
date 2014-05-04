@@ -32,7 +32,9 @@
 
 <template name="question">
   <div class="question">
-    <h2>{{title}}</h2>
+    <a href="/question/{{slug}}">
+      <h2>{{title}}</h2>
+    </a>
     <a class="answer" href="/question/{{slug}}">Answer</a>
     <p>{{fullQuestion}}</p>
   </div>
