@@ -16,7 +16,7 @@
     {{> loginButtons}}
   </div>
   <div id="titleContainer">
-    <h1>Welcome to <a href="{{pathFor '/'}}">ClearGov</a></h1>
+    <h1>Welcome to <a href="{{pathFor 'home'}}">ClearGov</a></h1>
     <a id="postQ" href="{{pathFor 'post-a-question'}}">Post Your Question</a> 
   </div>
   <div class="greeting">{{greeting}}</div>
@@ -25,14 +25,15 @@
 <template name="bulletin">
   <div class="questions">
     {{#each questions}}
-        {{> question}}
-      {{/each}}
+      {{> question}}
+    {{/each}}
   </div>
 </template>
 
 <template name="question">
   <div class="question">
     <h2>{{title}}</h2>
+    <a class="answer" href="/question/{{slug}}">Answer</a>
     <p>{{fullQuestion}}</p>
   </div>
 </template>

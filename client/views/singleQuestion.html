@@ -1,0 +1,38 @@
+<template name="singleQuestion">
+  <div id="login">
+	{{> loginButtons}}
+  </div>
+
+  <div class="question">
+    <h2>{{title}}</h2>
+    <p>{{fullQuestion}}</p>
+  </div>
+
+  {{> answer}}
+</template>
+
+<template name="answer">
+	
+	<div id="overlay">&laquo; Please sign in to answer a question.</div>
+	<div class="intro active">
+		<h1>Answer</h1>
+		<p>Please:
+			<ul>
+				<li>Site sources with links.</li>
+				<li>Answer with facts - not opinion.</li>				
+			</ul>
+		</p>
+		<div id="answerForm" class="form">
+			<div class="origQuestion">
+				
+			</div>
+			<br><br>
+			<label for="fullA">Enter answer here:</label>
+			<textarea class="qBody" id="fullA" name="fullA" rows="10"></textarea>
+			<br>
+			<button type="submit" class="post"><span>P</span>ost</button>
+		</div>
+
+	</div>
+</template>
+
