@@ -1,7 +1,10 @@
 <template name="singleQuestion">
+
   <div id="login">
 	{{> loginButtons}}
   </div>
+
+  <div id="overlay">&laquo; Please sign in to answer a question.</div>
 
   <div class="question">
     <h2>{{title}}</h2>
@@ -13,7 +16,7 @@
 
 <template name="answer">
 	
-	<div id="overlay">&laquo; Please sign in to answer a question.</div>
+	
 	<div class="intro active">
 		<h1>Answer</h1>
 		<p>Please:
