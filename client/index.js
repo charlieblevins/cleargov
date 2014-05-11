@@ -3,7 +3,20 @@ Template.hello.greeting = function () {
 };
 
 Template.bulletin.questions = function () {
-  return Questions.find({}, { sort: {title: 1} } );
+  if( Session.get('prefix') ){
+    return Questions.find(
+  			{title: 
+  				{ $regex: Session.get('prefix') + '.*', $options: 'i' }
+  			}
+  		)
+  } else {
+  	return Questions.find(
+  			{title: 
+  				{ $regex: '.*', $options: 'i' }
+  			}
+  		)
+  }
+  
 };
 
 Template.hello.events({
@@ -11,3 +24,10 @@ Template.hello.events({
     window.location.href = '/post-a-question';
   }
 });
+
+Template.bulletin.events({
+  'keyup .search input': function(){
+  	console.log('changing prefix to: ' + Session.get('prefix'));
+  	Session.set('prefix', $('.search input').val() );
+  }
+})
