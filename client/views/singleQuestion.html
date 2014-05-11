@@ -9,12 +9,26 @@
   <div class="question">
     <h2>{{title}}</h2>
     <p>{{fullQuestion}}</p>
+    {{#if answers}}
+    <hr>
+    {{#each answers}}
+    	<p>{{answer}}</p>
+    	<p>Posted by {{uname}} at {{time}}</p>
+    {{/each}}
+    {{/if}}
   </div>
 
-  {{> answer}}
+  {{> submitAnswer}}
 </template>
 
 <template name="answer">
+	<div>
+		
+	</div>
+
+</template>
+
+<template name="submitAnswer">
 	
 	
 	<div class="intro active">

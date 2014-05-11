@@ -11,9 +11,11 @@
         data: function() {
           var result = Questions.findOne({slug: this.params._slug});//Finds a question matching the url var
           
-          Session.set('qId', result._id);
+          //console.log(result.slug);
 
+		  Session.set('qId', result._id);
           return result;
+
         }
       });
       this.route('post-a-question', {//Post Question Page

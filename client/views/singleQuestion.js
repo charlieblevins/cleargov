@@ -1,21 +1,34 @@
-Template.answer.events({//Create even listeners for the answer template
+Template.submitAnswer.events({//Create even listeners for the answer template
   'click button.post': function(){
+    var overwrite = true;
     if(Meteor.userId()){
-    	  Meteor.call('addAnswer', Session.get('qId'), fullA.value, function(error, ed){
-        Router.go('home');
-        if(error){
-          console.log(error);
-        } else {
-          console.log('User ' + Meteor.userId() + ' added an answer to question: ' + Session.get('qId') + ' and effected ' + ed + ' documents.' );
-        }
-      });
+      var alreadyAnswered = Questions.findOne(
+        { _id: Session.get('qId'), answers: 
+          { $elemMatch: 
+            { uId: Meteor.userId() }
+          }
+        });
+      console.log(alreadyAnswered);
+      if(alreadyAnswered){
+        overwrite = confirm("You have already answered this question. Click OK to overwrite your old answer with the new one.");
+      }
+      if(overwrite){
+        Meteor.call('addAnswer', Session.get('qId'), fullA.value, function(error, ed){
+          if(error){
+            console.log(error);
+          } else {
+            console.log(ed);
+            console.log('User ' + Meteor.userId() + ' added an answer to question: ' + Session.get('qId') + ' and effected ' + ed + ' documents.' );
+          }
+        });
+      }
     } else {
     	  console.log('You must be logged in to answer a question.');
     }
   }
 })
 
-Template.answer.rendered = function(){
+Template.submitAnswer.rendered = function(){
   console.log('answer template rendered');
   if( Meteor.userId() ){//If user is logged in...
     setTimeout(function(){
