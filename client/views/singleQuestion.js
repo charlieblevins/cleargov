@@ -28,6 +28,20 @@ Template.submitAnswer.events({//Create even listeners for the answer template
   }
 })
 
+Template.singleQuestion.events({
+  'click a.upvote': function(){
+    if(Meteor.userId()){
+      Meteor.call('upVote', this.answer, Session.get('qId'), Meteor.userId(), function(error, ed){
+        if(error){
+          console.log(error);
+        } else {
+          console.log('User ' + Meteor.userId() + ' added a vote to question: ' + Session.get('qId') + ' and effected ' + ed + ' documents.' );
+        }
+      });
+    }
+  }
+})
+
 Template.submitAnswer.rendered = function(){
   console.log('answer template rendered');
   if( Meteor.userId() ){//If user is logged in...

@@ -13,6 +13,9 @@
     <hr>
     {{#each answers}}
     	<p>{{answer}}</p>
+    	<p><a class="upvote" href="#" rel="{{uId}}">Vote Up</a>
+    	<span>Votes: {{votes}}</span>
+    	</p>
     	<p>Posted by {{uname}} at {{time}}</p>
     {{/each}}
     {{/if}}

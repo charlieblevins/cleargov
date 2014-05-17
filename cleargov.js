@@ -10,8 +10,6 @@
         template: 'singleQuestion',
         data: function() {
           var result = Questions.findOne({slug: this.params._slug});//Finds a question matching the url var
-          
-          //console.log(result.slug);
 
 		  Session.set('qId', result._id);
           return result;
