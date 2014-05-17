@@ -34,7 +34,8 @@ Template.singleQuestion.events({
       Meteor.call('upVote', this.answer, Session.get('qId'), Meteor.userId(), function(error, ed){
         if(error){
           console.log(error);
-        } else {
+        } else {//Vote was successfull...
+          $('.upvote').hide();
           console.log('User ' + Meteor.userId() + ' added a vote to question: ' + Session.get('qId') + ' and effected ' + ed + ' documents.' );
         }
       });
