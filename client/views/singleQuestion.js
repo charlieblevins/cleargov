@@ -38,6 +38,9 @@ Template.singleQuestion.events({
           console.log('User ' + Meteor.userId() + ' added a vote to question: ' + Session.get('qId') + ' and effected ' + ed + ' documents.' );
         }
       });
+    } else {
+      //Flash the overlay message
+      $('#overlay').fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
     }
 
     //hideVoting();
@@ -60,10 +63,23 @@ Template.submitAnswer.rendered = function(){
     }, 100);
   }
 
-  //hideVoting();
+  
 }
 
 Template.ansr.rendered = function(){
-  //hideVoting();
+  hideVoting();
+}
+
+function hideVoting(){
+  //Check if users name is stored in voters array
+  var alreadyVoted = Questions.findOne({
+    _id: Session.get('qId'), 'answers.voters' : { $elemMatch : { userId : Meteor.userId() } }
+  });
+  console.log(alreadyVoted);
+  if(alreadyVoted){
+    $('.upvote').hide();
+  } else {
+    $('.upvote').show();
+  }
 }
 
