@@ -8,7 +8,6 @@ Template.submitAnswer.events({//Create even listeners for the answer template
             { uId: Meteor.userId() }
           }
         });
-      console.log(alreadyAnswered);
       if(alreadyAnswered){
         overwrite = confirm("You have already answered this question. Click OK to overwrite your old answer with the new one.");
       }
@@ -17,15 +16,15 @@ Template.submitAnswer.events({//Create even listeners for the answer template
           if(error){
             console.log(error);
           } else {
-            console.log(ed);
             console.log('User ' + Meteor.userId() + ' added an answer to question: ' + Session.get('qId') + ' and effected ' + ed + ' documents.' );
+            
           }
         });
       }
     } else {
     	  console.log('You must be logged in to answer a question.');
     }
-  }
+  }//end button.post click
 })
 
 Template.singleQuestion.events({
@@ -40,6 +39,8 @@ Template.singleQuestion.events({
         }
       });
     }
+
+    //hideVoting();
   }
 })
 
@@ -58,4 +59,11 @@ Template.submitAnswer.rendered = function(){
       $('.intro').animate({opacity: 0.5});
     }, 100);
   }
+
+  //hideVoting();
 }
+
+Template.ansr.rendered = function(){
+  //hideVoting();
+}
+

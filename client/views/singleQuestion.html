@@ -12,11 +12,7 @@
     {{#if answers}}
     <hr>
     {{#each answers}}
-    	<p>{{answer}}</p>
-    	<p><a class="upvote" href="#" rel="{{uId}}">Vote Up</a>
-    	<span>Votes: {{votes}}</span>
-    	</p>
-    	<p>Posted by {{uname}} at {{time}}</p>
+    	{{> ansr}}
     {{/each}}
     {{/if}}
   </div>
@@ -24,11 +20,13 @@
   {{> submitAnswer}}
 </template>
 
-<template name="answer">
-	<div>
-		
-	</div>
-
+<template name="ansr">
+	<p>{{answer}}</p>
+	<p>
+		<a class="upvote" href="#" rel="{{uId}}">Vote Up</a>
+		<span>Votes: {{votes}}</span>
+	</p>
+	<p>Posted by {{uname}} at {{time}}</p>
 </template>
 
 <template name="submitAnswer">

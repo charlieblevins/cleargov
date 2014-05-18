@@ -11,7 +11,23 @@
         data: function() {
           var result = Questions.findOne({slug: this.params._slug});//Finds a question matching the url var
 
-		  Session.set('qId', result._id);
+		      Session.set('qId', result._id);
+
+          if( Meteor.userId() ){
+            var alreadyAnswered = Questions.findOne(
+            { _id: Session.get('qId'), answers: 
+              { $elemMatch: 
+                { uId: Meteor.userId() }
+              }
+            });
+
+            if ( alreadyAnswered ){
+              $('.upvote').hide();
+            }
+          }
+
+          
+
           return result;
 
         }
