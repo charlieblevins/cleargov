@@ -8,28 +8,15 @@
       this.route('question', {//Indiv question page
         path: '/question/:_slug',
         template: 'singleQuestion',
-        data: function() {
-          var result = Questions.findOne({slug: this.params._slug});//Finds a question matching the url var
-
-		      Session.set('qId', result._id);
-
-          if( Meteor.userId() ){
-            var alreadyAnswered = Questions.findOne(
-            { _id: Session.get('qId'), answers: 
-              { $elemMatch: 
-                { uId: Meteor.userId() }
-              }
-            });
-
-            if ( alreadyAnswered ){
-              $('.upvote').hide();
-            }
+        waitOn: function(){
+          var result = Questions.findOne({slug: this.params._slug});
+          if (result){
+            Session.set('qId', result._id);
           }
-
-          
-
-          return result;
-
+        },
+        data: function() {
+          return Questions.findOne({slug: this.params._slug});//Finds a question matching the url var
+		      //Session.set('slug', this.params._slug);
         }
       });
       this.route('post-a-question', {//Post Question Page
