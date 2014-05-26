@@ -15,5 +15,9 @@ if( Meteor.userId() ){//If user is logged in...
   }
 
 
+
+  Meteor.subscribe('userData');
+
+
 });
 

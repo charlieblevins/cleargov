@@ -1,0 +1,23 @@
+<template name="profile">
+
+  <div id="login">
+	{{> loginButtons}}
+  </div>
+
+  <div class="profile">
+    <h2>{{name}}</h2>
+    <p>{{username}}</p>
+    <p>{{points}} points</p>
+    {{#if questions}}
+    <hr>
+    {{#each questions}}
+    	{{> userquestion}}
+    {{/each}}
+    {{/if}}
+  </div>
+
+</template>
+
+<template name="userquestion">
+  <a href="#">{{userquestion}}</a>
+</template>

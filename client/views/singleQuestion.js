@@ -29,10 +29,11 @@ Template.submitAnswer.events({//Create even listeners for the answer template
 
 Template.singleQuestion.events({
   'click a.upvote': function(){
+
     if(Meteor.userId()){
       Meteor.call('upVote', this.answer, Session.get('qId'), Meteor.userId(), function(error, ed){
         if(error){
-          //console.log(error);
+          alert(error);
         } else {//Vote was successfull...
           $('.upvote').hide();
           console.log('User ' + Meteor.userId() + ' added a vote to answer by: ' + ed.answerer + ' and effected ' + ed.rowsEffected + ' documents. Answerer now has ' + ed.answererdata.points + ' points.' );
