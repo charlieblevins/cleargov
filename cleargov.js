@@ -9,14 +9,16 @@ Meteor.startup(function(){
       waitOn: function(){
         var result = Questions.findOne({slug: this.params._slug});
         if (result){
+          //Set session variable when user visites question
           Session.set('qId', result._id);
         }
       },
       data: function() {
         //Finds a question matching the url var
         var result = Questions.findOne({slug: this.params._slug});
-        console.log(result);
+
         if(result){
+          //Sort answers descending by vote
           result.answers = result.answers.sort(compare);
           return result;
         }        

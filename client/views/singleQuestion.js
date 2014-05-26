@@ -32,18 +32,16 @@ Template.singleQuestion.events({
     if(Meteor.userId()){
       Meteor.call('upVote', this.answer, Session.get('qId'), Meteor.userId(), function(error, ed){
         if(error){
-          console.log(error);
+          //console.log(error);
         } else {//Vote was successfull...
           $('.upvote').hide();
-          console.log('User ' + Meteor.userId() + ' added a vote to question: ' + Session.get('qId') + ' and effected ' + ed + ' documents.' );
+          console.log('User ' + Meteor.userId() + ' added a vote to answer by: ' + ed.answerer + ' and effected ' + ed.rowsEffected + ' documents. Answerer now has ' + ed.answererdata.points + ' points.' );
         }
       });
     } else {
-      //Flash the overlay message
+      //If user is not logged in, Flash the overlay message
       $('#overlay').fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
     }
-
-    //hideVoting();
   }
 })
 
@@ -75,7 +73,7 @@ function hideVoting(){
   var alreadyVoted = Questions.findOne({
     _id: Session.get('qId'), 'answers.voters' : { $elemMatch : { userId : Meteor.userId() } }
   });
-  console.log(alreadyVoted);
+
   if(alreadyVoted){
     $('.upvote').hide();
   } else {
